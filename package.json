@@ -1,0 +1,23 @@
+{
+  "name": "aws-lambda-lua-runtime",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/burck1/aws-lambda-lua-runtime"
+  },
+  "devDependencies": {
+    "serverless": "^1.35.1"
+  },
+  "scripts": {
+    "package": "serverless package --package .serverless",
+    "postpackage": "npm run show-package",
+    "show-package": "unzip -vl .serverless/helloLua.zip",
+    "predeploy": "npm run package",
+    "deploy": "serverless deploy --package .serverless",
+    "deploy-function": "serverless deploy function -f helloLua",
+    "remove": "serverless remove",
+    "invoke": "serverless invoke -f helloLua -p event.json --log"
+  }
+}

@@ -1,0 +1,34 @@
+service: hello-lua
+
+provider:
+  name: aws
+
+package:
+  individually: true
+  exclude:
+    - ./**
+  include:
+    - index.sh
+    - index.lua
+
+functions:
+  helloLua:
+    handler: index.handler
+    runtime: provided
+    memorySize: 512
+    timeout: 10
+    versionFunctions: false
+    environment:
+      HELLO: LUA
+    layers:
+      - 'Fn::Join':
+        - ':'
+        -
+          - 'arn'
+          - 'aws'
+          - 'lambda'
+          - Ref: 'AWS::Region'
+          - '744348701589'
+          - 'layer'
+          - 'bash'
+          - '4'
