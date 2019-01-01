@@ -10,10 +10,7 @@ setup_lua ()
 
 handler () {
     set -e
-
     EVENT_DATA=$1
-
     setup_lua
-
     /tmp/lua53 index.lua $EVENT_DATA
 }
